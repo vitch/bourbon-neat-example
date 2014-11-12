@@ -1,0 +1,224 @@
+@import "bourbon";
+
+$visual-grid: true;
+
+@import "neat-helpers";
+
+
+$bp1: 320px;
+$bp2: 480px;
+$bp3: 760px;
+$bp4: 1000px;
+$bp5: 1200px;
+$mq-bp0: new-breakpoint(min-width 0 4); // Yuk!
+$mq-bp1: new-breakpoint(min-width $bp1 4);
+$mq-bp2: new-breakpoint(min-width $bp2 8);
+$mq-bp3: new-breakpoint(min-width $bp3 12);
+$mq-bp4: new-breakpoint(min-width $bp4 12);
+$mq-bp5: new-breakpoint(min-width $bp5 20);
+
+$max-width: $bp5;
+
+@import "neat";
+
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($grid-columns, $gutter); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+
+.container {
+  @include outer-container;
+  margin-bottom: 20px;
+}
+
+.left {
+  background: rgba(0,0,0,.3);
+
+  @include media($mq-bp0) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(2);    
+  }
+  @include media($mq-bp2) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp3) {
+    @include span-columns(6);    
+  }
+  @include media($mq-bp4) {
+    @include span-columns(6);    
+  }
+  @include media($mq-bp5) {
+    @include span-columns(10);    
+  }
+}
+.right {
+  background: rgba(255,127,0,.3);
+  @include media($mq-bp0) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(2);    
+  }
+  @include media($mq-bp2) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp3) {
+    @include span-columns(6);    
+  }
+  @include media($mq-bp4) {
+    @include span-columns(6);    
+  }
+  @include media($mq-bp5) {
+    @include span-columns(10);    
+  }
+}
+
+.col {
+  background: rgba(125,127,255,.3);
+  height: 20px;
+  margin-bottom: 10px;
+  @include media($mq-bp0) {
+    @include span-columns(1);
+    @include omega(4n);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(1);
+    @include omega-reset(4n);
+    @include omega(4n);
+  }
+  @include media($mq-bp2) {
+    @include span-columns(1);
+    @include omega-reset(4n);
+    @include omega(8n);
+  }
+  @include media($mq-bp3) {
+    @include span-columns(1);
+    @include omega-reset(4n);
+    @include omega-reset(8n);
+    @include omega(12n);
+  }
+  @include media($mq-bp4) {
+    @include span-columns(1);
+    @include omega-reset(4n);
+    @include omega-reset(8n);
+    @include omega-reset(12n);
+    @include omega(12n);
+  }
+  @include media($mq-bp5) {
+    @include span-columns(1);
+    @include omega-reset(4n);
+    @include omega-reset(8n);
+    @include omega-reset(12n);
+    @include omega(20n);
+  }
+}
+
+.product-tile {
+  background: rgba(125,127,255,.3);
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin-bottom: 10px;
+  @include media($mq-bp0) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp2) {
+    @include span-columns(4);
+    @include omega(2n);
+  }
+  @include media($mq-bp3) {
+    @include span-columns(4);
+    @include omega-reset(2n);
+    @include omega(3n);
+  }
+  @include media($mq-bp4) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp5) {
+    @include span-columns(4);
+    @include omega-reset(2n);
+    @include omega-reset(3n);
+    @include omega(5n);
+  }
+}
+
+
+
+.side {
+  background: rgba(0,0,0,.3);
+
+  @include media($mq-bp0) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp2) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp3) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp4) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp5) {
+    @include span-columns(4);    
+  }
+}
+.products {
+  background: rgba(255,127,0,.3);
+  @include media($mq-bp0) {
+    @include span-columns(4);
+  }
+  @include media($mq-bp1) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp2) {
+    @include span-columns(4);    
+  }
+  @include media($mq-bp3) {
+    @include span-columns(8);    
+  }
+  @include media($mq-bp4) {
+    @include span-columns(8);    
+  }
+  @include media($mq-bp5) {
+    @include span-columns(16);    
+  }
+
+  .sub-product-tile {
+    background: rgba(125,127,255,.2);
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin-bottom: 10px;
+    @include media($mq-bp0) {
+      @include span-columns(2 of 4);
+      @include omega(2n);
+    }
+    @include media($mq-bp1) {
+    }
+    @include media($mq-bp2) {
+    }
+    @include media($mq-bp3) {
+      @include span-columns(2 of 8);
+      @include omega-reset(2n);
+      @include omega(4n);
+    }
+    @include media($mq-bp4) {
+      @include span-columns(2 of 8);
+    }
+    @include media($mq-bp5) {
+      @include span-columns(2 of 16);
+      @include omega-reset(2n);
+      @include omega-reset(4n);
+      @include omega(8n);
+    }
+  }
+}
