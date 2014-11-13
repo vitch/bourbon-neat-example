@@ -1,0 +1,185 @@
+/////////////////////////////////
+//Containers
+/////////////////////////////////
+
+* {
+  box-sizing: border-box;
+}
+
+.outer-container {
+  margin: 0 auto;
+  width: 100%;
+  @media screen and (min-width: $bp2) {
+    width: $bp2;
+  }
+  @media screen and (min-width: $bp3) {
+    padding-right: $basket-width;
+    width: $bp3;
+  }
+  @media screen and (min-width: $bp4) {
+    width: $bp4;
+  }
+  @media screen and (min-width: $bp5) {
+    width: $bp5;
+  }
+}
+
+.row {
+  @include clearfix();
+}
+
+
+// Mobile portrait
+@media screen and (min-width: 0) {
+  .container {
+    padding: 0 $bp1-row-padding;
+  }
+  .row {
+    margin: 0;
+  }
+}
+// Mobile landscape
+@media screen and (min-width: $bp2) {
+  .container {
+    padding: 0 $bp2-row-padding;
+  }
+  // .container {
+  //  width: 92%;
+  //  padding-left: 2%;
+  //  padding-right: 2%;
+  // }
+  .row {
+    margin: 0 (-$bp2-gutter / 2);
+  }
+}
+//Tablet Portrait
+@media screen and (min-width: $bp3) {
+  .container {
+    padding: 0 $bp3-row-padding;
+  }
+  // .container {
+  //  width: 92%;
+  //  padding-left: 2%;
+  //  padding-right: 2%;
+  // }
+  .row {
+    margin: 0 (-$bp3-gutter / 2);
+  }
+}
+//Tablet Landscape
+@media screen and (min-width: $bp4) {
+  .container {
+    padding: 0 $bp4-row-padding;
+  }
+  .row {
+    margin: 0 (-$bp4-gutter / 2);
+  }
+}
+//Desktop
+@media screen and (min-width: $bp5) {
+  .container {
+    padding: 0 $bp5-row-padding;
+  }
+  .row {
+    margin: 0 (-$bp5-gutter / 2);
+  }
+}
+/////////////////////////////////
+//Spans
+/////////////////////////////////
+
+//Span Mixin
+@mixin span($bp, $rows, $gutter, $number, $parent_number:$rows) {
+
+  width: ((($rows/$parent_number* 100) / $rows) * $number) - $gutter;
+  margin: 0 $gutter / 2;
+  float: left;
+}
+
+@mixin offset($bp, $rows, $gutter, $number) {
+  margin-left: ((100% / $rows) * $number) + ($gutter /2);
+}
+@mixin postset($bp, $rows, $gutter, $number) {
+  margin-right: ((100% / $rows) * $number) + ($gutter /2);
+}
+
+// Mobile portrait
+  @for $i from 1 through $bp1-rows {
+    .bp1-span#{$i} { 
+      @include span($bp1, $bp1-rows, $bp1-gutter, $i);
+    }
+  }
+  @for $i from 0 through ($bp1-rows - 1) {
+    .bp1-offset#{$i} { @include offset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
+    .bp1-postset#{$i} { @include postset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
+  }
+
+
+// Mobile landscape
+@media screen and (min-width: $bp2) {
+  @for $i from 1 through $bp2-rows {
+    .bp2-span#{$i} { 
+      @include span($bp2, $bp2-rows, $bp2-gutter, $i); 
+      @for $j from 1 through $i {
+        .bp2-span#{$j} {
+          @include span($bp2, $bp2-rows, $bp2-gutter, $j, $i); 
+        }
+      }
+    }
+  }
+  @for $i from 0 through ($bp2-rows - 1) {
+    .bp2-offset#{$i} { @include offset($bp2, $bp2-rows, $bp2-gutter, $i); }
+    .bp2-postset#{$i} { @include postset($bp2, $bp2-rows, $bp2-gutter, $i); }
+  }
+}
+//Tablet portrait
+@media screen and (min-width: $bp3){  
+  @for $i from 1 through $bp3-rows {
+    .bp3-span#{$i} { 
+      @include span($bp3, $bp3-rows, $bp3-gutter, $i); 
+      @for $j from 1 through $i {
+        .bp3-span#{$j} {
+          @include span($bp3, $bp3-rows, $bp3-gutter, $j, $i); 
+        }
+      }
+    }
+  }
+  @for $i from 0 through ($bp3-rows - 1) {
+    .bp3-offset#{$i} { @include offset($bp3, $bp3-rows, $bp3-gutter, $i); }
+    .bp3-postset#{$i} { @include postset($bp3, $bp3-rows, $bp3-gutter, $i); }
+  }
+}
+//Tablet landscape
+@media screen and (min-width: $bp4) {
+  @for $i from 1 through $bp4-rows {
+    .bp4-span#{$i} { 
+      @include span($bp4, $bp4-rows, $bp4-gutter, $i); 
+      @for $j from 1 through $i {
+        .bp4-span#{$j} {
+          @include span($bp4, $bp4-rows, $bp4-gutter, $j, $i); 
+        }
+      }
+    }
+  }
+  @for $i from 0 through ($bp4-rows - 1) {
+    .bp4-offset#{$i} { @include offset($bp4, $bp4-rows, $bp4-gutter, $i); }
+    .bp4-postset#{$i} { @include postset($bp4, $bp4-rows, $bp4-gutter, $i); }
+  }
+}
+//Large Desktop
+@media screen and (min-width: $bp5)  {
+  @for $i from 1 through $bp5-rows {
+    .bp5-span#{$i} { 
+      @include span($bp5, $bp5-rows, $bp5-gutter, $i); 
+      @for $j from 1 through $i {
+        .bp5-span#{$j} {
+          @include span($bp5, $bp5-rows, $bp5-gutter, $j, $i); 
+        }
+      }
+    }
+  }
+  @for $i from 0 through ($bp5-rows - 1) {
+    .bp5-offset#{$i} { @include offset($bp5, $bp5-rows, $bp5-gutter, $i); }
+    .bp5-postset#{$i} { @include postset($bp5, $bp5-rows, $bp5-gutter, $i); }
+  }
+}

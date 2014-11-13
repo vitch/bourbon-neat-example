@@ -1,0 +1,48 @@
+
+
+/////////////////////////////////
+//Spans
+/////////////////////////////////
+
+@function calculate-gutter($gutter-px, $bp, $row-padding, $basket:$basket-width ) {
+  @return percentage($gutter-px / (($bp - $basket - $row-padding * 2) / 1px));
+}
+
+
+/////////////////////////////////
+//Breakpoint variables
+/////////////////////////////////
+
+// Basket
+$basket-width: 180px;
+
+$baseline: 4px;
+// Mobile portrait
+$bp1: 320px;
+$bp1-rows: 4;
+$bp1-row-padding: 20px;
+$bp1-gutter: calculate-gutter(16, $bp1, $bp1-row-padding, 0);
+// Mobile landscape
+$bp2: 480px;
+$bp2-rows: 8;
+$bp2-row-padding: 24px;
+$bp2-gutter: calculate-gutter(16, $bp2, $bp2-row-padding, 0);
+//Tablet Portrait
+$bp3: 760px;
+$bp3-rows: 12;
+$bp3-row-padding: 32px;
+$bp3-gutter: calculate-gutter(12, $bp3, $bp3-row-padding);
+//Tablet Landscape
+$bp4: 1000px;
+$bp4-rows: 12;
+$bp4-row-padding: 32px;
+$bp4-gutter: calculate-gutter(12, $bp4, $bp4-row-padding);
+
+//Desktop
+$bp5: 1200px;
+$bp5-rows: 20;
+$bp5-row-padding: 36px;
+$bp5-gutter: calculate-gutter(12, $bp5, $bp5-row-padding);
+
+
+

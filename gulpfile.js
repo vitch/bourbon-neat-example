@@ -1,19 +1,14 @@
 var gulp  = require('gulp'),
   sass  = require('gulp-sass'),
-  connect = require('gulp-connect'),
-
-  sassOptions={
-    src: 'src/sass/site.scss',
-    destDir: 'out/css/'
-  };
+  connect = require('gulp-connect');
 
 gulp.task('sass',function(){
-  gulp.src(sassOptions.src)
+  gulp.src('src/sass/site.scss')
     .pipe(sass({
       errLogToConsole: true,
-      includePaths: require('node-neat').includePaths
+      includePaths: require('node-bourbon').includePaths
     }))
-    .pipe(gulp.dest(sassOptions.destDir));
+    .pipe(gulp.dest('out/css/'));
 });
 
 gulp.task('connect', function() {
@@ -24,7 +19,7 @@ gulp.task('connect', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-  gulp.watch(sassOptions.src, ['sass']);
+  gulp.watch('src/sass/**/*.scss', ['sass']);
 });
 
 
