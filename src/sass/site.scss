@@ -46,6 +46,24 @@ body {
   @extend .bp5-span1;
 }
 
+.wrap {
+  background: rgba(0,127,0,.3);
+  @extend .bp1-span4;
+  @extend .bp2-span8;
+  @extend .bp3-span12;
+  @extend .bp4-span12;
+  @extend .bp5-span20;
+}
+
+.half-wrap {
+  background: rgba(0,127,100,.3);
+  @extend .bp1-span2;
+  @extend .bp2-span4;
+  @extend .bp3-span6;
+  @extend .bp4-span6;
+  @extend .bp5-span10;
+}
+
 .product-tile {
   background: rgba(125,127,255,.3);
   height: 100px;

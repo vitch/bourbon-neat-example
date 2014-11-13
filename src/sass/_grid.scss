@@ -35,7 +35,8 @@
     padding: 0 $bp1-row-padding;
   }
   .row {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 // Mobile landscape
@@ -49,7 +50,8 @@
   //  padding-right: 2%;
   // }
   .row {
-    margin: 0 (-$bp2-gutter / 2);
+    margin-left: -$bp2-gutter / 2;
+    margin-right: -$bp2-gutter / 2;
   }
 }
 //Tablet Portrait
@@ -63,7 +65,8 @@
   //  padding-right: 2%;
   // }
   .row {
-    margin: 0 (-$bp3-gutter / 2);
+    margin-left: -$bp3-gutter / 2;
+    margin-right: -$bp3-gutter / 2;
   }
 }
 //Tablet Landscape
@@ -72,7 +75,8 @@
     padding: 0 $bp4-row-padding;
   }
   .row {
-    margin: 0 (-$bp4-gutter / 2);
+    margin-left: -$bp4-gutter / 2;
+    margin-right: -$bp4-gutter / 2;
   }
 }
 //Desktop
@@ -81,7 +85,8 @@
     padding: 0 $bp5-row-padding;
   }
   .row {
-    margin: 0 (-$bp5-gutter / 2);
+    margin-left: -$bp5-gutter / 2;
+    margin-right: -$bp5-gutter / 2;
   }
 }
 /////////////////////////////////
@@ -91,8 +96,10 @@
 //Span Mixin
 @mixin span($bp, $rows, $gutter, $number, $parent_number:$rows) {
 
-  width: ((($rows/$parent_number* 100) / $rows) * $number) - $gutter;
-  margin: 0 $gutter / 2;
+  $nested_gutter: $rows/$parent_number*$gutter;
+  width: ((($rows/$parent_number * 100) / $rows) * $number) - $nested_gutter;
+  margin-left: $nested_gutter / 2;
+  margin-right: $nested_gutter / 2;
   float: left;
 }
 
