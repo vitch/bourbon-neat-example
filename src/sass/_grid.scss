@@ -103,6 +103,14 @@
   float: left;
 }
 
+@mixin nested-row($parent-rows, $total-rows, $gutter) {
+  .row {
+    $calculated-gutter: -$total-rows / $parent-rows * $gutter / 2;
+    margin-left: $calculated-gutter;
+    margin-right: $calculated-gutter;
+  }
+}
+
 @mixin offset($bp, $rows, $gutter, $number) {
   margin-left: ((100% / $rows) * $number) + ($gutter /2);
 }
@@ -111,15 +119,21 @@
 }
 
 // Mobile portrait
-  @for $i from 1 through $bp1-rows {
-    .bp1-span#{$i} { 
-      @include span($bp1, $bp1-rows, $bp1-gutter, $i);
+@for $i from 1 through $bp1-rows {
+  .bp1-span#{$i} { 
+    @include span($bp1, $bp1-rows, $bp1-gutter, $i);
+    @for $j from 1 through $i {
+      .bp1-span#{$j} {
+        @include span($bp1, $bp1-rows, $bp1-gutter, $j, $i); 
+      }
     }
+    @include nested-row($i, $bp1-rows, $bp1-gutter);
   }
-  @for $i from 0 through ($bp1-rows - 1) {
-    .bp1-offset#{$i} { @include offset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
-    .bp1-postset#{$i} { @include postset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
-  }
+}
+@for $i from 0 through ($bp1-rows - 1) {
+  .bp1-offset#{$i} { @include offset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
+  .bp1-postset#{$i} { @include postset($bp1, $bp1-rows, $bp1-gutter, $i); float: left;}
+}
 
 
 // Mobile landscape
@@ -132,6 +146,7 @@
           @include span($bp2, $bp2-rows, $bp2-gutter, $j, $i); 
         }
       }
+      @include nested-row($i, $bp2-rows, $bp2-gutter);
     }
   }
   @for $i from 0 through ($bp2-rows - 1) {
@@ -149,6 +164,7 @@
           @include span($bp3, $bp3-rows, $bp3-gutter, $j, $i); 
         }
       }
+      @include nested-row($i, $bp3-rows, $bp3-gutter);
     }
   }
   @for $i from 0 through ($bp3-rows - 1) {
@@ -166,6 +182,7 @@
           @include span($bp4, $bp4-rows, $bp4-gutter, $j, $i); 
         }
       }
+      @include nested-row($i, $bp4-rows, $bp4-gutter);
     }
   }
   @for $i from 0 through ($bp4-rows - 1) {
@@ -183,6 +200,7 @@
           @include span($bp5, $bp5-rows, $bp5-gutter, $j, $i); 
         }
       }
+      @include nested-row($i, $bp5-rows, $bp5-gutter);
     }
   }
   @for $i from 0 through ($bp5-rows - 1) {
