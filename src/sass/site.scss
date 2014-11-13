@@ -21,8 +21,8 @@ $max-width: $bp5;
 
 @import "neat";
 
-@mixin omega-reset($nth) {
-  &:nth-child(#{$nth}) { margin-right: flex-gutter($grid-columns, $gutter); }
+@mixin omega-reset($nth, $cols:$grid-columns, $gutter:$gutter) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($cols, $gutter); }
   &:nth-child(#{$nth}+1) { clear: none }
 }
 
@@ -208,7 +208,7 @@ $max-width: $bp5;
     }
     @include media($mq-bp3) {
       @include span-columns(2 of 8);
-      @include omega-reset(2n);
+      @include omega-reset(2n, 8);
       @include omega(4n);
     }
     @include media($mq-bp4) {
@@ -216,8 +216,8 @@ $max-width: $bp5;
     }
     @include media($mq-bp5) {
       @include span-columns(2 of 16);
-      @include omega-reset(2n);
-      @include omega-reset(4n);
+      @include omega-reset(2n, 16);
+      @include omega-reset(4n, 16);
       @include omega(8n);
     }
   }
